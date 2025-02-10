@@ -82,7 +82,7 @@ finish_release() {
 finish_hotfix() {
   git checkout develop
   git pull origin develop
-  git merge hotfix/$1 -m Atualizando develop com a hotfix '$1'"
+  git merge hotfix/$1 -m "Atualizando develop com a hotfix '$1'"
   git push origin develop
   echo "Publicando hotfix '$1'..."
   git push origin "hotfix/$1"
