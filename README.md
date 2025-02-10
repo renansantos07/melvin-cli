@@ -42,14 +42,14 @@
   melvin feature start nome_da_feature
   ```
 
-#### 3. `feature finish [nome] [--no-pr]`
+#### 3. `feature finish [--no-pr] [nome]`
 - **Descrição:** Finaliza a branch de feature, mergeando-a para `develop` e criando um Pull Request (PR). 
   - Caso use a flag `--no-pr`, o merge será feito diretamente sem criar um PR.
 - **Como usar:** 
   ```bash
   melvin feature finish nome_da_feature
   # ou
-  melvin feature finish nome_da_feature --no-pr
+  melvin feature finish --no-pr nome_da_feature
   ```
 
 #### 4. `release start [nome]`
@@ -59,14 +59,14 @@
   melvin release start nome_da_release
   ```
 
-#### 5. `release finish [nome] [--no-pr]`
+#### 5. `release finish [--no-pr] [nome]`
 - **Descrição:** Finaliza a branch de release, mergeando-a para `develop` e criando um Pull Request (PR) para `main`. 
   - Caso use a flag `--no-pr`, o merge será feito diretamente sem criar um PR.
 - **Como usar:** 
   ```bash
   melvin release finish nome_da_release
   # ou
-  melvin release finish nome_da_release --no-pr
+  melvin release finish --no-pr nome_da_release
   ```
 
 #### 6. `hotfix start [nome]`
@@ -76,14 +76,14 @@
   melvin hotfix start nome_do_hotfix
   ```
 
-#### 7. `hotfix finish [nome] [--no-pr]`
+#### 7. `hotfix finish [--no-pr] [nome]`
 - **Descrição:** Finaliza a branch de hotfix, mergeando-a para `develop` e criando um Pull Request (PR) para `main`.
   - Caso use a flag `--no-pr`, o merge será feito diretamente sem criar um PR.
 - **Como usar:** 
   ```bash
   melvin hotfix finish nome_do_hotfix
   # ou
-  melvin hotfix finish nome_do_hotfix --no-pr
+  melvin hotfix finish --no-pr nome_do_hotfix
   ```
 
 #### 8. `pr [base] [head] [title] [body]`
