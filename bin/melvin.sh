@@ -61,12 +61,16 @@ finish_feature() {
 
 # Função para finalizar um release criando um PR para main
 finish_release() {
+  echo "Publicando release '$1'..."
+  git push origin "release/$1"
   echo "Criando Pull Request para o release '$1'..."
   create_pull_request "release/$1" "main"
 }
 
 # Função para finalizar um hotfix criando um PR para main
 finish_hotfix() {
+  echo "Publicando hotfix '$1'..."
+  git push origin "hotfix/$1"
   echo "Criando Pull Request para o hotfix '$1'..."
   create_pull_request "hotfix/$1" "main"
 }
