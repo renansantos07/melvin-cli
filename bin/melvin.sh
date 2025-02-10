@@ -70,7 +70,7 @@ finish_release() {
 finish_release() {
   git checkout develop
   git pull origin develop
-  git merge release/$1
+  git merge release/$1 -m "Atualizando develop com a release '$1'"
   git push origin develop
   git push origin "release/$1"
   echo "Criando Pull Request para o release '$1'..."
@@ -82,7 +82,7 @@ finish_release() {
 finish_hotfix() {
   git checkout develop
   git pull origin develop
-  git merge hotfix/$1
+  git merge hotfix/$1 -m Atualizando develop com a hotfix '$1'"
   git push origin develop
   echo "Publicando hotfix '$1'..."
   git push origin "hotfix/$1"
