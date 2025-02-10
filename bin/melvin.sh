@@ -11,16 +11,16 @@ init_git_flow() {
     git push -u origin develop
   fi
 
-  if ! git branch | grep -q "master"; then
-    echo "Criando branch master..."
-    git checkout -b master
-    git push -u origin master
+  if ! git branch | grep -q "main"; then
+    echo "Criando branch main..."
+    git checkout -b main
+    git push -u origin main
   fi
 
   echo "Git Flow inicializado com sucesso!"
 }
 
-# Função para criar uma nova feature branch a partir de develop
+# Função para criar uma nova feature branch a partir de main
 create_feature() {
   git checkout main
   git pull origin main
@@ -28,7 +28,7 @@ create_feature() {
   echo "Feature branch 'feature/$1' criada com sucesso!"
 }
 
-# Função para iniciar um release a partir de develop
+# Função para iniciar um release a partir de main
 create_release() {
   git checkout main
   git pull origin main
@@ -67,12 +67,28 @@ finish_release() {
   create_pull_request "release/$1" "main"
 }
 
+finish_release() {
+  git checkout develop
+  git pull origin develop
+  git merge release/$1
+  git push origin develop
+  git push origin "release/$1"
+  echo "Criando Pull Request para o release '$1'..."
+  create_pull_request "release/$1" "main"
+  echo "Release '$1' finalizado e mergeado na develop com Pull Request para main!"
+}
+
 # Função para finalizar um hotfix criando um PR para main
 finish_hotfix() {
+  git checkout develop
+  git pull origin develop
+  git merge hotfix/$1
+  git push origin develop
   echo "Publicando hotfix '$1'..."
   git push origin "hotfix/$1"
   echo "Criando Pull Request para o hotfix '$1'..."
   create_pull_request "hotfix/$1" "main"
+  echo "hotfix '$1' finalizado e mergeado na develop com Pull Request para main!"
 }
 
 # Função para fazer merge de múltiplas features ordenadas por data do último push
@@ -119,12 +135,12 @@ show_help() {
   echo "Uso: melvin [comando] [opções]"
   echo "Comandos disponíveis:"
   echo "  init-flow                - Inicializa o Git Flow"
-  echo "  feature -c [nome]        - Cria uma nova feature"
-  echo "  feature -f [nome]        - Finaliza uma feature e cria um PR para develop"
-  echo "  release -c [nome]        - Cria uma nova release"
-  echo "  release -f [nome]        - Finaliza uma release e cria um PR para master"
-  echo "  hotfix -c [nome]         - Cria um novo hotfix"
-  echo "  hotfix -f [nome]         - Finaliza um hotfix e cria um PR para master"
+  echo "  feature start [nome]        - Cria uma nova feature"
+  echo "  feature finish [nome]        - Finaliza uma feature e cria um PR para develop"
+  echo "  release start [nome]        - Cria uma nova release"
+  echo "  release finish [nome]        - Finaliza uma release e cria um PR para master"
+  echo "  hotfix start [nome]         - Cria um novo hotfix"
+  echo "  hotfix finish [nome]         - Finaliza um hotfix e cria um PR para master"
   echo "  pr [base] [head] [title] [body] - Cria um PR manualmente"
   echo "  merge-features [release] [features...] - Faz merge das features na release ordenadas pelo push mais antigo"
   echo "  --help                   - Exibe esta ajuda"
@@ -135,22 +151,22 @@ case "$1" in
   init-flow) init_git_flow ;;
   feature) 
     case "$2" in 
-      -c) create_feature "$3" ;;
-      -f) finish_feature "$3" ;;
+      start) create_feature "$3" ;;
+      finish) finish_feature "$3" ;;
       *) echo "Opção inválida para feature. Use -c para criar ou -f para finalizar." ;;
     esac
     ;;
   release) 
     case "$2" in 
-      -c) create_release "$3" ;;
-      -f) finish_release "$3" ;;
+      start) create_release "$3" ;;
+      finish) finish_release "$3" ;;
       *) echo "Opção inválida para release. Use -c para criar ou -f para finalizar." ;;
     esac
     ;;
   hotfix) 
     case "$2" in 
-      -c) create_hotfix "$3" ;;
-      -f) finish_hotfix "$3" ;;
+      start) create_hotfix "$3" ;;
+      finish) finish_hotfix "$3" ;;
       *) echo "Opção inválida para hotfix. Use -c para criar ou -f para finalizar." ;;
     esac
     ;;
