@@ -5,26 +5,40 @@
 
 ## 🚀 Como instalar e usar
 
-### Passos de Instalação
+### 1. Instalar o GitHub CLI no Windows
 
-1. **Instalar no Windows**
-   - Clone o repositório:
-     ```bash
-     git clone https://github.com/oi-melvin/melvin-cli.git
-     ```
-   - Navegue até a pasta do repositório:
-     ```bash
-     cd melvin-cli
-     ```
-   - Execute o arquivo `install.bat`:
-     - Isso irá instalar as dependências necessárias e configurar o ambiente para rodar o `melvin-cli`.
+Antes de usar o Melvin CLI, é necessário instalar o GitHub CLI, que permite criar Pull Requests diretamente do terminal.
 
-2. **Usar o melvin-cli**
-   - Abra um novo terminal.
-   - Execute o comando:
-     ```bash
-     melvin --help
-     ```
+- Acesse o [site oficial do GitHub CLI](https://cli.github.com/) e baixe o instalador para Windows.
+- Após o download, execute o instalador e siga as instruções para concluir a instalação.
+- Após a instalação, abra um terminal e verifique se o GitHub CLI foi instalado corretamente executando o comando:
+  ```bash
+  gh --version
+  ```
+
+### 2. Instalar o Melvin CLI
+
+- Realize o clone do repositório Melvin CLI:
+  ```bash
+  git clone https://github.com/usuario/melvin-cli.git
+  ```
+- Navegue até o diretório do repositório:
+  ```bash
+  cd melvin-cli
+  ```
+- Execute o arquivo `install.bat` para configurar o Melvin CLI no seu sistema:
+  ```bash
+  install.bat
+  ```
+
+### 3. Usar o Melvin CLI
+
+Após a instalação, abra um novo terminal e execute o comando abaixo para ver os comandos disponíveis:
+```bash
+melvin --help
+```
+
+---
 
 ### Comandos Disponíveis
 
